@@ -1,0 +1,29 @@
+OSCR0 - OS Timer Count Register - 32-bit count up timer
+	0: 0x40A0_0010
+
+OSMR - OS Timer Match Register - registers that holds a count target that is matched againts OSCR0
+	0: 0x40A0_0000
+	1: 0x40A0_0004
+	2: 0x40A0_0008
+	3: 0x40A0_000C
+
+OSSR - OS Timer Status Register - Holds 4 bits indicating a match between OSCR0 and OSMRx.
+	0x40A0_0014
+
+OIER - OS Timer Interrupt Enable Register - 4 bits that indicate whether to assert OSSR when a match occurs
+	0x40A0_001C
+
+ICMR (Interrupt Controller Mask Register) - Mask interrupts
+	0x40D0_0004
+
+ICLR (Interrupt Controller Level Register) - Controls wether pending interrupts generate IRQs or FIQs
+	0x40D0_0008
+
+ICPR (Interrupt Controller Pending Register) - Shows all active interrupts in the system
+	0x40D0_0010
+
+
+OSCR is 32 bits... speed is 3.25MHz
+	-(2^32)/3,250,000 = 1321.53 --> number of cycles for the counter to go from 0 to (2^32 - 1)
+	-32500 cycles for 10ms
+	-counter = 32500 for 10ms
