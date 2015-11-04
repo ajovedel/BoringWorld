@@ -13,13 +13,12 @@ FUNC(irq_setup)
 	MRS	r3, cpsr		@ change to IRQ mode
 	MOV	r4, r3			@ copy of kernel mode
 	BIC	r3, #0x1F
-	ORR	r3, #0x12
+	ORR	r3, #0xD2
 	MSR	cpsr, r3
 
 	MOV	sp, #0xA4000000		@ setup IRQ stack
 
-	@BIC     r4, #80			@enable IRQs, switch back to kernel mode and return
-	MSR 	cpsr, r4
+	MSR	cpsr, r4		@enable IRQs, switch back to kernel mode and return
 	LDMFD	sp!, {r3-r4}
 	MOV	pc, lr
 

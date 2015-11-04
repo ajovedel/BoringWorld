@@ -21,7 +21,7 @@ void c_irq_handler(){
 
 		TIME_ELAPSED += 10;
 
-//		printf("TIME_ELAPSED: %lu", TIME_ELAPSED);
+		printf("TIME_ELAPSED: %lu", TIME_ELAPSED);
 	}
 	
 	// if another type of interrupt has ocurred, we ignore it

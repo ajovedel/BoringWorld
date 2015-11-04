@@ -21,16 +21,19 @@ int kmain(int argc, char** argv, uint32_t table)
 	app_startup(); /* bss is valid after this point */
 	global_data = table;
 
-	// install SWI and IRQ handlerr
+	// install SWI and IRQ handler
 	swi_install_addr = install_handler(SWI_VECTOR_ADDR, swi_saved_inst);
 	irq_install_addr = install_handler(IRQ_VECTOR_ADDR, irq_saved_inst);
 
+	printf("did i make it here?\n");
 	// setup IRQ space
 	irq_setup();
 
+	printf("what about here?\n");
 	// setup interrupts
 	interrupt_setup();
 
+	printf("and heeeer???\n");
 	// setup timer
 	timer_setup();
 

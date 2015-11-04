@@ -8,7 +8,7 @@
 
 FUNC(irq_handler)
 
-	STMFD	sp!, {r0-r12, lr}		@store users GP registers and lr_svc in kernel stack
+	STMFD	sp!, {r0-r12, lr}		@store users GP registers and lr in IRQ stack
 
 	LDR	r5, =uboot_r8			@restore uboot address
 	LDR	r8, [r5]
