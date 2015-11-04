@@ -2,6 +2,7 @@
 #include <bits/errno.h>
 #include <bits/fileno.h>
 #include "syscalls.h"
+#include "globals.h"
 
 
 /* read N character from STDIN and place it in a buffer */
@@ -77,4 +78,10 @@ ssize_t write(int fd, const void *buf, size_t count){
 		putc(((char*)buf)[i]);
 	}
 	return i;
+}
+
+
+
+unsigned long time(){
+	return (TIME_UNITS_ELAPSED * (0.001) * TIME_RES_MS);
 }

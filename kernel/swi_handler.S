@@ -16,6 +16,10 @@ FUNC(swi_handler)
 	LDR	r5, =uboot_r8			@restore uboot address
 	LDR	r8, [r5]
 
+	MRS	r3, cpsr			@enable IRQs
+	BIC	r3, #0x80
+	MSR	cpsr, r3
+
 	BL	c_swi_handler			@Call C_SWI_Handler and pass the SWI number
 
 	ADD 	sp, sp, #4			@add 4 bytes because we do not restore r0

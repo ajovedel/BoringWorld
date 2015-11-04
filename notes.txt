@@ -24,6 +24,6 @@ ICPR (Interrupt Controller Pending Register) - Shows all active interrupts in th
 
 
 OSCR is 32 bits... speed is 3.25MHz
-	-(2^32)/3,250,000 = 1321.53 --> number of cycles for the counter to go from 0 to (2^32 - 1)
+	-(2^32)/3,250,000 = 1321.53 --> number of seconds for the counter to go from 0 to (2^32 - 1)
+	-3250000 cycles for 1s
 	-32500 cycles for 10ms
-	-counter = 32500 for 10ms

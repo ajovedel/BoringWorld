@@ -29,7 +29,7 @@ unsigned c_swi_handler(unsigned SWI_number, unsigned *regs){
 		
 		// call time syscall
 		case TIME_SWI:
-			//return_code = time();
+			return_code = time();
 			break;
 
 		// call sleep syscall
