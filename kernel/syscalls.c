@@ -1,6 +1,8 @@
 #include <exports.h>
 #include <bits/errno.h>
 #include <bits/fileno.h>
+#include <arm/reg.h>
+#include <arm/timer.h>
 #include "syscalls.h"
 #include "globals.h"
 
@@ -81,7 +83,25 @@ ssize_t write(int fd, const void *buf, size_t count){
 }
 
 
-
+/* return the time in miliseconds since the kernel booted up */
 unsigned long time(){
 	return (TIME_UNITS_ELAPSED * (0.001) * TIME_RES_MS);
 }
+
+
+/* halt execution until the time has elapsed */
+void sleep(unsigned long sleep_time){
+
+	unsigned long start_time;
+	unsigned long end_time;
+
+	// clear the timer count register
+	start_time = reg_read(OSTMR_OSCR_ADDR);
+
+	// calculate time to stop waiting
+	end_time = start_time + sleep_time;
+
+	// loop until the end time is reached
+	while(end_time != reg_read(OSTMR_OSCR_ADDR));
+}
+	
