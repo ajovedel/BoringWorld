@@ -34,7 +34,7 @@ unsigned c_swi_handler(unsigned SWI_number, unsigned *regs){
 
 		// call sleep syscall
 		case SLEEP_SWI:
-			//return_code = sleep((unsigned long)regs[0]);
+			sleep((unsigned long)regs[0]);
 			break;
 
 		// unknown SWI code
