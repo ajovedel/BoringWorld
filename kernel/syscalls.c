@@ -92,16 +92,22 @@ unsigned long time(){
 /* halt execution until the time has elapsed */
 void sleep(unsigned long sleep_time){
 
-	unsigned long start_time;
-	unsigned long end_time;
+	unsigned long end_time_units;
+	unsigned long sleep_time_units;
 
-	// clear the timer count register
-	start_time = reg_read(OSTMR_OSCR_ADDR);
+	// convert from milisecond to time units
+	sleep_time_units = (sleep_time / TIME_RES_MS);
 
-	// calculate time to stop waiting
-	end_time = start_time + sleep_time;
+	// calculate end time units
+	end_time_units = TIME_UNITS_ELAPSED + sleep_time_units;
 
-	// loop until the end time is reached
-	while(end_time != reg_read(OSTMR_OSCR_ADDR));
+//	printf("TIME_ELAPSED_UNITS is %lu\n", TIME_UNITS_ELAPSED);
+//	printf("sleep_time_units is %lu\n", sleep_time_units);
+//	printf("end_time is %lu\n", end_time_units);
+
+	// loop until the appropriate time has elapsed
+	while(TIME_UNITS_ELAPSED != end_time_units);
+
+
 }
 	
