@@ -1,3 +1,12 @@
+/** @file main.c
+ *
+ *  @brief This file contains the core functionality of our kernel
+ *
+ *  @author Alexandre Jove (ajovedel)
+ *  @author Vishnu Gorantla (vishnupg)
+ *  @bug No known bugs
+ */
+
 #include <exports.h>
 #include <arm/psr.h>
 #include <arm/exception.h>
@@ -6,11 +15,24 @@
 #include "globals.h"
 
 uint32_t global_data;
-unsigned *uboot_r8;		/* uboot jump table addr */
-unsigned *kernel_ret_addr;	/* kernel return addr from usr */
-volatile unsigned long TIME_UNITS_ELAPSED = 0; /* keep track of time elapsed of the system */
+
+/* uboot jump table addr */
+unsigned *uboot_r8;
+
+/* kernel return addr from usr */
+unsigned *kernel_ret_addr;
+
+/* keep track of time elapsed of the system */
+volatile unsigned long TIME_UNITS_ELAPSED = 0; 
 
 
+/** @brief C entry point for the kernel
+ *
+ *  @param argc Number of arguments
+ *  @param argv Command line args pointers
+ *  @param table global Table 
+ *  @return kernel return status
+ */
 int kmain(int argc, char** argv, uint32_t table)
 {
 	unsigned *swi_install_addr;
@@ -22,8 +44,10 @@ int kmain(int argc, char** argv, uint32_t table)
 	global_data = table;
 
 	// install SWI and IRQ handler
-	swi_install_addr = install_handler(SWI_VECTOR_ADDR, swi_saved_inst);
-	irq_install_addr = install_handler(IRQ_VECTOR_ADDR, irq_saved_inst);
+	swi_install_addr = install_handler(SWI_VECTOR_ADDR, swi_saved_inst,
+                                      (unsigned) swi_handler);
+	irq_install_addr = install_handler(IRQ_VECTOR_ADDR, irq_saved_inst,
+                                      (unsigned) irq_handler);
 
 	printf("did i make it here?\n");
 //	printf("TIME_RES_CYCLES: " TIME_RES_CYCLES "\n");

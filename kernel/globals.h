@@ -10,7 +10,8 @@
 
 void *swi_handler();
 void *irq_handler();
-unsigned *install_handler(unsigned *vector_addr, unsigned *saved_inst);
+unsigned *install_handler(unsigned *vector_addr, unsigned *saved_inst,
+                               unsigned handler_addr);
 void call_user(int argc, char *argv[]);
 void irq_setup();
 void timer_setup();
