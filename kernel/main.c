@@ -8,7 +8,7 @@
 uint32_t global_data;
 unsigned *uboot_r8;		/* uboot jump table addr */
 unsigned *kernel_ret_addr;	/* kernel return addr from usr */
-unsigned long TIME_UNITS_ELAPSED = 0; /* keep track of time elapsed of the system */
+volatile unsigned long TIME_UNITS_ELAPSED = 0; /* keep track of time elapsed of the system */
 
 
 int kmain(int argc, char** argv, uint32_t table)
@@ -26,15 +26,13 @@ int kmain(int argc, char** argv, uint32_t table)
 	irq_install_addr = install_handler(IRQ_VECTOR_ADDR, irq_saved_inst);
 
 	printf("did i make it here?\n");
-	printf("TIME_RES_CYCLES: %f\n", TIME_RES_CYCLES);
+//	printf("TIME_RES_CYCLES: " TIME_RES_CYCLES "\n");
 	// setup IRQ space
 	irq_setup();
 
-	printf("what about here?\n");
 	// setup interrupts
 	interrupt_setup();
 
-	printf("and heeeer???\n");
 	// setup timer
 	timer_setup();
 
