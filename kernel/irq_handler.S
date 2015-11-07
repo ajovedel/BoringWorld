@@ -13,10 +13,6 @@ FUNC(irq_handler)
 	LDR	r5, =uboot_r8			@restore uboot address
 	LDR	r8, [r5]
 
-	MRS	r3, cpsr
-	BIC	r3, #0x80
-	MSR	cpsr, r3
-
 	BL	c_irq_handler			@Call C_SWI_Handler and pass the SWI number
 
 	LDMFD	sp!, {r0-r12, lr}		@restore users GP registers an lr_svc
