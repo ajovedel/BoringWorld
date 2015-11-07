@@ -7,6 +7,9 @@
 #include "globals.h"
 
 
+#define RAM_START 0xA0000000
+#define RAM_END   0xA3FFFFFF
+
 /* read N character from STDIN and place it in a buffer */
 ssize_t read(int fd, void *buf, size_t count){
 	
@@ -16,6 +19,8 @@ ssize_t read(int fd, void *buf, size_t count){
 	// fd has to be STDIN, otherwise return bad fd
 	if(fd != STDIN_FILENO)
 		return -EBADF;
+
+
 
 	// verify that buf and buf+count is in range of SDRAM (A0000000-A3FFFFFF)
 	if(!((unsigned)buf > 0xA0000000 && (unsigned)buf < 0xA3FFFFFF))
