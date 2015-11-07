@@ -1,3 +1,12 @@
+/** @file timer_setup.c
+ *
+ *  @brief This file contains the functionality regarding setting
+ *  up timer specific registers
+ *
+ *  @author Alexandre Jove (ajovedel)
+ *  @author Vishnu Gorantla (vishnupg)
+ *  @bug No known bugs
+ */
 #include <exports.h>
 #include <arm/timer.h>
 #include <arm/reg.h>

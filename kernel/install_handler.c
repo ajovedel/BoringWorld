@@ -13,12 +13,11 @@
 #include <exports.h>
 #include "globals.h"
 
-#define LDR_POS_OPCODE    0xe59ff000
-#define LDR_NEG_OPCODE    0xe51ff000
-#define LDR_OPCODE_MASK   0xfffff000
+#define LDR_POS_OPCODE    0xe59ff000u
+#define LDR_NEG_OPCODE    0xe51ff000u
+#define LDR_OPCODE_MASK   0xfffff000u
 #define DEFAULT_PREFETCH  0x8
 #define NEXT_INSTR_OFFSET 0x4
-#define BAD_CODE          0xbadc0de
 
 /** @brief SWI and IRQ handler installer
  *
@@ -44,16 +43,17 @@ unsigned *install_handler(unsigned *vector_addr, unsigned *saved_inst,
   {
     printf("Unrecognized instruction\n");
     printf("Opcode is 0x%x\n", swi_opcode);
-    return (unsigned *)BAD_CODE;
+    return (unsigned *)0;
   }
 
   // Find the offset to add to the swi instr address. Change sign accordingly
-  int ld_offset = swi_opcode & ~(LDR_OPCODE_MASK);
+  int ld_offset = (*vector_addr) & ~(LDR_OPCODE_MASK);
   if(swi_opcode == LDR_NEG_OPCODE)
     ld_offset = -ld_offset;
 
   handler_addr = *(unsigned **)((unsigned)vector_addr + DEFAULT_PREFETCH +
                              ld_offset);
+
 
 	// Save the first two instructions that we are going to be modyfing
 	// in the SWI handler	

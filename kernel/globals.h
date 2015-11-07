@@ -7,6 +7,7 @@
 #define OS_CLK_SPEED (unsigned long) 3250000
 #define TIME_RES_MS (unsigned long) 10
 #define TIME_RES_CYCLES (unsigned long) (OS_CLK_SPEED * (0.001 * TIME_RES_MS))
+#define BAD_CODE          0xbadc0de
 
 void *swi_handler();
 void *irq_handler();

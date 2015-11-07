@@ -1,3 +1,7 @@
+@ file irq_setup.S
+@ author: Alexandre Jove (ajevodel)
+@ author: Vishnu Gorantla (vishnupg) 
+
 @ setup irq space
 
 	.file "irq_setup.S"

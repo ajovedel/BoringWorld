@@ -1,3 +1,13 @@
+/** @file interrupt_setup.c
+ *
+ *  @brief This file contains the functionality regarding setting up
+ *  the device registers for interrupts
+ *
+ *  @author Alexandrew Jove (ajovedel)
+ *  @author Vishnu Gorantla (vishnupg)
+ *  @bug No known bugs
+ */
+
 #include <exports.h>
 #include <arm/interrupt.h>
 #include <arm/reg.h>

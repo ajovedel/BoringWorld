@@ -1,4 +1,10 @@
-@save the kernel context, setup user space and call user process
+@ file call_user.S
+@ 
+@ Save the kernel context, setup user space and call user process
+@
+@ author Alexandre Jove (ajovedel)
+@ author Vishnu Gorantla (vishnupg)
+@
 
 	.file "call_user_app"
 	.text

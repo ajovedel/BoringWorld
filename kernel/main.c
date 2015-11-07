@@ -45,9 +45,15 @@ int kmain(int argc, char** argv, uint32_t table)
 
 	// install SWI and IRQ handler
 	swi_install_addr = install_handler(SWI_VECTOR_ADDR, swi_saved_inst,
-                                      (unsigned) swi_handler);
+                                      (unsigned) (&swi_handler));
+
+  if(!swi_install_addr)
+    return BAD_CODE;
+
 	irq_install_addr = install_handler(IRQ_VECTOR_ADDR, irq_saved_inst,
-                                      (unsigned) irq_handler);
+                                      (unsigned) (&irq_handler));
+  if(!irq_install_addr)
+    return BAD_CODE;
 
 	printf("did i make it here?\n");
 //	printf("TIME_RES_CYCLES: " TIME_RES_CYCLES "\n");
