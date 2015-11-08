@@ -106,13 +106,7 @@ void sleep(unsigned long sleep_time){
 	// calculate end time units
 	end_time_units = TIME_UNITS_ELAPSED + sleep_time_units;
 
-//	printf("TIME_ELAPSED_UNITS is %lu\n", TIME_UNITS_ELAPSED);
-//	printf("sleep_time_units is %lu\n", sleep_time_units);
-//	printf("end_time is %lu\n", end_time_units);
-
 	// loop until the appropriate time has elapsed
 	while(TIME_UNITS_ELAPSED != end_time_units);
-
-
 }
 	
