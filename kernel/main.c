@@ -55,8 +55,6 @@ int kmain(int argc, char** argv, uint32_t table)
   if(!irq_install_addr)
     return BAD_CODE;
 
-	printf("did i make it here?\n");
-//	printf("TIME_RES_CYCLES: " TIME_RES_CYCLES "\n");
 	// setup IRQ space
 	irq_setup();
 
@@ -66,12 +64,8 @@ int kmain(int argc, char** argv, uint32_t table)
 	// setup timer
 	timer_setup();
 
-	printf("user app\n");
 	// setup user space and call the user app
 	call_user(argc, argv);
-
-	printf("EXITED user app\n");	
-	while(1);
 
 	// restore the SWI handler
 	*swi_install_addr = swi_saved_inst[0];
