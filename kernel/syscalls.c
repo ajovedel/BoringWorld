@@ -97,16 +97,15 @@ unsigned long time(){
 /* halt execution until the time has elapsed */
 void sleep(unsigned long sleep_time){
 
-	unsigned long end_time_units;
-	unsigned long sleep_time_units;
+	unsigned long start_time, end_time;	
 
-	// convert from milisecond to time units
-	sleep_time_units = (sleep_time / TIME_RES_MS);
+	// get current OSCR
+	start_time = reg_read(OSTMR_OSCR_ADDR);
 
-	// calculate end time units
-	end_time_units = TIME_UNITS_ELAPSED + sleep_time_units;
+	// calculate time we sleep
+	end_time = start_time + (sleep_time * (TIME_RES_CYCLES * 0.1));
 
-	// loop until the appropriate time has elapsed
-	while(TIME_UNITS_ELAPSED != end_time_units);
+	// sleep
+	while(reg_read(OSTMR_OSCR_ADDR) < end_time); 
 }
 	
