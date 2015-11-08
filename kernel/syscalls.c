@@ -90,7 +90,7 @@ ssize_t write(int fd, const void *buf, size_t count){
 
 /* return the time in miliseconds since the kernel booted up */
 unsigned long time(){
-	return (TIME_UNITS_ELAPSED * TIME_RES_MS);
+	return (TIME_UNITS_ELAPSED * TIME_RES_MS + ((reg_read(OSTMR_OSCR_ADDR) / OS_CLK_SPEED) % TIME_RES_MS));
 }
 
 
