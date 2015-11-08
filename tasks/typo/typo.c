@@ -29,7 +29,6 @@ int main(int argc, char** argv)
     buf[siz-1] = '\0';
 
     elapsed_time = time() - start_time; // in milliseconds
-    printf("Elapsed is %ld\n",elapsed_time);
     integral_sec = elapsed_time / 1000;
     decimal_sec = elapsed_time - (integral_sec * 1000);
 
