@@ -9,7 +9,7 @@ int main(int argc, char **argv){
 	
 	unsigned long start_time, elapsed_time;
 	unsigned integral_sec, decimal_sec;
-	char buffer[1];
+	char buffer[256];
 	
 	printf("Welcome to the reaction test!\n");
 	printf("We will measure how fast you can react to a message being printed on the screen\n");
@@ -20,8 +20,8 @@ int main(int argc, char **argv){
 
 	while(1){
 
-		// random sleep between 0-5 seconds
-		sleep(time() % 5000);
+		// random sleep between 0-10 seconds
+		sleep(time() % 10000);
 
 		printf("NOW!!!");
 
@@ -29,7 +29,7 @@ int main(int argc, char **argv){
 		start_time = time();
 
 		// get user reaction
-		read(STDIN_FILENO, buffer, 1);
+		read(STDIN_FILENO, buffer, 256);
 
 		// calculate user reaction time
 		elapsed_time = time() - start_time;
