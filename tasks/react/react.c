@@ -1,5 +1,6 @@
 /*
- * game to test your reaction time
+ * game to test your reaction time of a randomly generated event
+ * based on: http://www.humanbenchmark.com/tests/reactiontime
  */
 
 #include <stdio.h>
@@ -12,8 +13,8 @@ int main(int argc, char **argv){
 	char buffer[256];
 	
 	printf("Welcome to the reaction test!\n");
-	printf("We will measure how fast you can react to a message being printed on the screen\n");
-	printf("When you see the message \"NOW!!!\", you must press [ENTER] as fast as you can");
+	printf("We will measure how fast you can react to a message being randomly printed on the screen\n");
+	printf("When you see the message \"NOW!!!\", you must press [ENTER] as fast as you can\n");
 	printf("The time it took between the message and you pressing [ENTER] will be shown\n");
 	printf("Press enter to begin...\n");
 	read(STDIN_FILENO, buffer, 1);
