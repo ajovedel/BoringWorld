@@ -1,8 +1,11 @@
 /** @file typo.c
  *
  * @brief Echos characters back with timing data.
+ *        Links to libc.
+ * @author Vishnu Gorantla (vishnupg)
+ * @author Alexandre Jove (ajovedel)
+ * @bug No knwn bugs
  *
- * Links to libc.
  */
 
 #include <stdio.h>
