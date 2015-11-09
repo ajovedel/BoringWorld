@@ -1,6 +1,14 @@
-/*
- * global variables and constants
+/** @file globals.h
+ *
+ *  @brief This file contatins the global vars required for the kernel.
+ *
+ *  @author Alexandre Jove (ajovedel)
+ *  @author Vishnu Gorantla (vishnupg)
+ *  @bug No known bugs
  */
+
+#ifndef __GLOBALS_H_
+#define __GLOBALS_H_
 
 #define SWI_VECTOR_ADDR (unsigned *) 0x08
 #define IRQ_VECTOR_ADDR (unsigned *) 0x18
@@ -19,3 +27,6 @@ void timer_setup();
 void interrupt_setup();
 
 extern volatile unsigned long TIME_UNITS_ELAPSED;
+
+
+#endif

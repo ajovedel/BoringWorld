@@ -1,4 +1,8 @@
-@Handle IRQs
+@ file irq_handler.S
+@ brief Assembler stub for calling up the C IRQ handler
+
+@ author Alexandre Jove (ajovedel)
+@ author Vishnu Gorantla (vishnupg)
 
 	.file "irq_handler.S"
 	.text

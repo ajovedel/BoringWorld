@@ -1,5 +1,12 @@
+/** @file syscalls.h
+ *
+ *  @brief This file contains the prototypes for the syscalls
+ *
+ *  @authoe Alexandre Jove(ajovedel)
+ *  @author Vishnu Gorantla (vishnupg)
+ *  @bug No known bugs
+ */
 
-/*syscalls available for C_SWI_handler to call*/
 void exit(int status);
 ssize_t read(int fd, void *buf, size_t count);
 ssize_t write(int fd, const void *buf, size_t count);

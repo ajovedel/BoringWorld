@@ -1,4 +1,9 @@
-@Handle SWIs when the SWI instruction is used
+@ file swi_handler.S
+@ brief This file contains the assembler stub for calling the C SWI handler
+@
+@ author Alexandre Jove (ajovedel)
+@ author Vishnu Gorantla (vishnupg)
+
 
 	.file "swi_handler.S"
 	.text

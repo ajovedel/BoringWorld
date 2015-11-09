@@ -1,3 +1,11 @@
+/** @file syscalls.c
+ *
+ *  @brief This file contains the functionality of the syscalls
+ *
+ *  @author Alexandre Jove (ajovedel)
+ *  @author Vishnu Gorantla (vishnupg)
+ *  @bug No known bugs
+ */
 #include <exports.h>
 #include <bits/errno.h>
 #include <bits/fileno.h>
@@ -6,11 +14,24 @@
 #include "syscalls.h"
 #include "globals.h"
 
+#define BACKSPACE '\b'
+#define DELETE    127
+#define EOT       4
+#define NL        10
+#define CR        13
 
 #define RAM_START 0xA0000000
 #define RAM_END   0xA3FFFFFF
+#define ROM_END   0xFFFFFF
 
-/* read N character from STDIN and place it in a buffer */
+/** @brief Read syscall
+ *
+ *  Read N character from STDIN and place it in a buffer
+ *  @param  fd  The file descriptor to read from
+ *  @param  buf The data buffer to store the read data
+ *  @param  count The number of bytes to read
+ *  @return The number of bytes read on success; otherwise -1
+ */
 ssize_t read(int fd, void *buf, size_t count){
 	
 	unsigned i;
@@ -20,29 +41,31 @@ ssize_t read(int fd, void *buf, size_t count){
 	if(fd != STDIN_FILENO)
 		return -EBADF;
 
-
+  unsigned start_buffer = (unsigned)buf;
+  unsigned end_buffer = start_buffer + count;
 
 	// verify that buf and buf+count is in range of SDRAM (A0000000-A3FFFFFF)
-	if(!((unsigned)buf > 0xA0000000 && (unsigned)buf < 0xA3FFFFFF))
+	if(!(start_buffer > RAM_START && start_buffer < RAM_END))
 		return -EFAULT;
-	if(!(((unsigned)buf+(unsigned)count) > 0xA0000000 && ((unsigned)buf+(unsigned)count) < 0xA3FFFFFF))
+	
+  if(!(end_buffer > RAM_START && end_buffer < RAM_END))
 		return -EFAULT;
-
+	
 	for(i=0; i<count; i++){
 
 		// get the character from STDIN
 		temp = getc();
 
 		// check for EOT character
-		if(temp == 4)
+		if(temp == EOT)
 			return ++i;
 
 		// check for backspace or delete
-		else if(temp == 8 || temp == 127)
+		else if(temp == BACKSPACE || temp == DELETE)
 			puts("\b \b");
 			
 		// check for newline and carriage return
-		else if(temp == '\n' || temp == '\r'){
+		else if(temp == CR || temp == NL){
 			((char *)buf)[i] = '\n';
 			putc('\n');
 			return ++i;
@@ -51,15 +74,20 @@ ssize_t read(int fd, void *buf, size_t count){
 		// if not a special char, read to buffer and write to STDOUT
 		else{
 			((char *)buf)[i] = temp;
-			putc(((char*)buf)[i]);
+			putc(temp);
 		}
 	}
-	putc('\n');
 	return i;
 }
 
-
-/* read N characters from a buffer and place it in STDOUT */
+/** @brief Write system call
+ *  
+ *  Reads N characters from a buffer and place it in STDOUT 
+ *  @param fd File Descriptor to write to
+ *  @param buf The buffer to write data from 
+ *  @param count The maximum size to write the data
+ *  @return The number of bytes written
+ */
 ssize_t write(int fd, const void *buf, size_t count){
 	
 	unsigned i;
@@ -68,33 +96,49 @@ ssize_t write(int fd, const void *buf, size_t count){
 	if (fd != STDOUT_FILENO)
 		return -EBADF;
 
+  unsigned start_buffer = (unsigned)buf;
+  unsigned end_buffer = start_buffer + count;
+
 	// verify that buf and buf+count is in range of SDRAM (A0000000-A3FFFFFF)
 	// or StrataFlash ROM (0 - 00FFFFFF)
-	if(!(((unsigned)buf > 0xA0000000 && (unsigned)buf < 0xA3FFFFFF) || ((unsigned)buf < 0xFFFFFF)))
+	if(! ((start_buffer > RAM_START && start_buffer < RAM_END) || 
+                          (start_buffer < ROM_END)) )
 		return -EFAULT;
-	if(!((((unsigned)buf+(unsigned)count) > 0xA0000000 && ((unsigned)buf+(unsigned)count) < 0xA3FFFFFF) || (((unsigned)buf+(unsigned)count) < 0xFFFFFF)))
+
+	if(! ((end_buffer > RAM_START && end_buffer < RAM_END) || 
+                          (end_buffer < ROM_END)) )
 		return -EFAULT;
 
 	// write buffer to STDOUT
 	for(i=0; i<count; i++){
-
+    
+    char buf_char = ((char *)buf)[i];
 		// return if null is reached
-		if(((char *)buf)[i] == '\0')
+		if(buf_char == '\0')
 			return i;
 
-		putc(((char*)buf)[i]);
+		putc(buf_char);
 	}
 	return i;
 }
 
 
-/* return the time in miliseconds since the kernel booted up */
+/** @brief Time system call
+ *  
+ *  Get the time in miliseconds since the kernel booted up 
+ *  @return The current time since system booted tup, in milliseconds
+ */
 unsigned long time(){
-	return (TIME_UNITS_ELAPSED * TIME_RES_MS + ((reg_read(OSTMR_OSCR_ADDR) / OS_CLK_SPEED) % TIME_RES_MS));
+	return (TIME_UNITS_ELAPSED * TIME_RES_MS + 
+           ((reg_read(OSTMR_OSCR_ADDR) / OS_CLK_SPEED) % TIME_RES_MS));
 }
 
 
-/* halt execution until the time has elapsed */
+/** @brief Sleep system call
+ *  Halts execution until the time has elapsed 
+ *
+ *  @return None.
+ */
 void sleep(unsigned long sleep_time){
 
 	unsigned long start_time, end_time;	
@@ -108,4 +152,3 @@ void sleep(unsigned long sleep_time){
 	// sleep
 	while(reg_read(OSTMR_OSCR_ADDR) < end_time); 
 }
-	

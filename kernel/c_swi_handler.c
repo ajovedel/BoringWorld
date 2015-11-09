@@ -1,10 +1,24 @@
+/** @file c_swi_handler
+ *
+ *  @brief This file contains the functionality of the C SWI handler
+ *
+ *  @author Alexandre Jove (ajovedel)
+ *  @author VishnuGorantla (vishnupg)
+ *
+ *  @bug No known bugs
+ */
 #include <exports.h>
 #include "syscalls.h"
 #include <bits/swi.h>
 
-/*
- * call the appropriate syscall, pass the right arguments and return the value.
- * exit is special and will not return in this function if called
+/*  @brief The C SWI handler
+ *  call the appropriate syscall, pass the right arguments and return the value.
+ *  exit is special and will not return in this function if called
+ *
+ *
+ *  @param SWI_number The swi number of the syscall
+ *  @param regs Pointer to the list of all the user mode registers 
+ *  return The return status of the system call.
  */
 unsigned c_swi_handler(unsigned SWI_number, unsigned *regs){
 

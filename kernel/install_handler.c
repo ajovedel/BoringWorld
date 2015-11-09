@@ -62,19 +62,10 @@ unsigned *install_handler(unsigned *vector_addr, unsigned *saved_inst,
 
 	// install "ldr pc, [pc, #-4]
   *handler_addr = LDR_NEG_OPCODE | NEXT_INSTR_OFFSET;
-	//*handler_addr = 0xE51FF004;
 
   //install the handler
   *(handler_addr + 1) = install_handler;
 
-  /*
-	// install address of swi or irq handler
-	if(is_swi)
-		*(handler_addr + 1) = (unsigned) swi_handler;
-
-	else if(vector_addr == IRQ_VECTOR_ADDR)
-		*(handler_addr + 1) = (unsigned) irq_handler;
-  */
 	return handler_addr;
 }
 
