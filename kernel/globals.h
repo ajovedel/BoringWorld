@@ -2,7 +2,7 @@
  *
  *  @brief This file contatins the global vars required for the kernel.
  *
- *  @author Alexandre Jove (ajovedel)
+ *  @author Alejandro Jove (ajovedel)
  *  @author Vishnu Gorantla (vishnupg)
  *  @bug No known bugs
  */

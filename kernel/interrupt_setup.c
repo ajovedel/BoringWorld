@@ -3,7 +3,7 @@
  *  @brief This file contains the functionality regarding setting up
  *  the device registers for interrupts
  *
- *  @author Alexandrew Jove (ajovedel)
+ *  @author Alejandrow Jove (ajovedel)
  *  @author Vishnu Gorantla (vishnupg)
  *  @bug No known bugs
  */

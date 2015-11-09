@@ -2,7 +2,7 @@
  *
  *  @brief This file contains the prototypes for the syscalls
  *
- *  @authoe Alexandre Jove(ajovedel)
+ *  @authoe Alejandro Jove(ajovedel)
  *  @author Vishnu Gorantla (vishnupg)
  *  @bug No known bugs
  */

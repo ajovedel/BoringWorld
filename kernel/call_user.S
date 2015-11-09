@@ -2,7 +2,7 @@
 @ 
 @ Save the kernel context, setup user space and call user process
 @
-@ author Alexandre Jove (ajovedel)
+@ author Alejandro Jove (ajovedel)
 @ author Vishnu Gorantla (vishnupg)
 @
 

@@ -1,7 +1,7 @@
 @ file exit.S
 
 @ brief exits back to the kernel
-@ author Alexandre Jove (ajovedel)
+@ author Alejandro Jove (ajovedel)
 @ author Vishnu Gorantla (vishnupg)
 
 

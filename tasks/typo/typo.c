@@ -3,7 +3,7 @@
  * @brief Echos characters back with timing data.
  *        Links to libc.
  * @author Vishnu Gorantla (vishnupg)
- * @author Alexandre Jove (ajovedel)
+ * @author Alejandro Jove (ajovedel)
  * @bug No knwn bugs
  *
  */

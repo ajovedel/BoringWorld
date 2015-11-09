@@ -2,7 +2,7 @@
  *
  *  @brief This file contains the core functionality of our kernel
  *
- *  @author Alexandre Jove (ajovedel)
+ *  @author Alejandro Jove (ajovedel)
  *  @author Vishnu Gorantla (vishnupg)
  *  @bug No known bugs
  */

@@ -3,7 +3,7 @@
  *  @brief This file contains the functionality of irq and swi
  *  handler installing.
  *
- *  @author Alexandre Jove (ajovedel)
+ *  @author Alejandro Jove (ajovedel)
  *  @author Vishnu Gorantla (vishnupg)
  *
  *  @bug No known bugs

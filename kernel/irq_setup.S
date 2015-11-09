@@ -1,7 +1,7 @@
 @ file irq_setup.S
 @ brief Sets up the IRQ handler stack
 @
-@ author: Alexandre Jove (ajevodel)
+@ author: Alejandro Jove (ajevodel)
 @ author: Vishnu Gorantla (vishnupg) 
 
 

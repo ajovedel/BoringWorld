@@ -1,7 +1,7 @@
 @ file swi_handler.S
 @ brief This file contains the assembler stub for calling the C SWI handler
 @
-@ author Alexandre Jove (ajovedel)
+@ author Alejandro Jove (ajovedel)
 @ author Vishnu Gorantla (vishnupg)
 
 

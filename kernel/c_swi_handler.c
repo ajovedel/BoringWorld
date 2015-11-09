@@ -2,7 +2,7 @@
  *
  *  @brief This file contains the functionality of the C SWI handler
  *
- *  @author Alexandre Jove (ajovedel)
+ *  @author Alejandro Jove (ajovedel)
  *  @author VishnuGorantla (vishnupg)
  *
  *  @bug No known bugs

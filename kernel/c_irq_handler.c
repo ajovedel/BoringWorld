@@ -2,7 +2,7 @@
  *
  *  @brief This file contains the functionality of the C IRQ handler
  *
- *  @author Alexandre Jove (ajovedel)
+ *  @author Alejandro Jove (ajovedel)
  *  @author Vishnu Gorantla (vishnupg)
  *
  *  @bug No known bugs 
